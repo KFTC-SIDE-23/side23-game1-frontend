@@ -1,19 +1,14 @@
-import { Image, StyleSheet, Platform, ScrollView } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
+import { StyleSheet, ScrollView } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 
-export default function HomeScreen() {
+export default function TabTwoScreen() {
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome! KFTCSide23</ThemedText>
-        <HelloWave />
+        <ThemedText type="title">Default Page</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Main Page</ThemedText>
-      </ThemedView>
+      <ThemedText>나중에 구현 예정</ThemedText>
     </ScrollView>
   );
 }
@@ -26,11 +21,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: "row",
-    alignItems: "center",
     gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
   },
 });
