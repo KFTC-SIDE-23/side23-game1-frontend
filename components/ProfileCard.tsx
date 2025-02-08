@@ -14,6 +14,7 @@ const profileImages = [
   require("../assets/images/profiles/profile4.png"),
 ];
 
+// 임시 - profileImage는 숫자로 받아오는 인덱스값
 const ProfileCard: React.FC<ProfileCardProps> = ({
   profileImage = 0,
   profileText = "Unknown User",
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexDirection: "row",
     alignItems: "center",
-    top: 20,
+    top: 10,
     left: 20,
   },
   profileImage: {
