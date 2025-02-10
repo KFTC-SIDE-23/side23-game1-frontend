@@ -3,8 +3,14 @@ import { Image, StyleSheet, Platform, ScrollView } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import DropdownButton from "@/components/DropdownButton";
 
 export default function HomeScreen() {
+  const sampleData = [
+    { label: "친구와 함께", value: "1" },
+    { label: "방 만들기", value: "2" },
+    { label: "참여하기", value: "3" },
+  ];
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
       <ThemedView style={styles.titleContainer}>
@@ -14,6 +20,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Main Page</ThemedText>
       </ThemedView>
+      <DropdownButton data={sampleData} />
     </ScrollView>
   );
 }
