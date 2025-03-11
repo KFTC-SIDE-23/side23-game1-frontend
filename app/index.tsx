@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
@@ -6,6 +6,8 @@ import { ThemedView } from "@/components/ThemedView";
 
 import DropdownButton from "@/components/DropdownButton";
 import ProfileCard from "@/components/ProfileCard";
+import Button from "@/components/Button";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
   const sampleData = [
@@ -13,6 +15,7 @@ export default function HomeScreen() {
     { label: "방 만들기", value: "2" },
     { label: "참여하기", value: "3" },
   ];
+
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
       <ProfileCard profileImage={null} profileText="Guest User" />
@@ -23,6 +26,9 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Main Page</ThemedText>
       </ThemedView>
+      <Link href="/randomGame">
+        <Button title="랜덤 게임" />
+      </Link>
       <DropdownButton data={sampleData} />
     </ScrollView>
   );
