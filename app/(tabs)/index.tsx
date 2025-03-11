@@ -3,7 +3,9 @@ import { Image, StyleSheet, Platform, ScrollView } from "react-native";
 import { HelloWave } from "@/components/HelloWave";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+
 import DropdownButton from "@/components/DropdownButton";
+import ProfileCard from "@/components/ProfileCard";
 
 export default function HomeScreen() {
   const sampleData = [
@@ -13,6 +15,7 @@ export default function HomeScreen() {
   ];
   return (
     <ScrollView contentContainerStyle={styles.mainContainer}>
+      <ProfileCard profileImage={null} profileText="Guest User" />
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome! KFTCSide23</ThemedText>
         <HelloWave />
