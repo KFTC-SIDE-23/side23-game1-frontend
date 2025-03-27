@@ -8,6 +8,8 @@ import DropdownButton from "@/components/DropdownButton";
 import ProfileCard from "@/components/ProfileCard";
 import Button from "@/components/Button";
 import { Link } from "expo-router";
+import Dialogue from "@/components/Dialogue";
+import Bubble from "@/components/Bubble";
 
 export default function HomeScreen() {
   const sampleData = [
@@ -29,6 +31,10 @@ export default function HomeScreen() {
       <Link href="/randomGame">
         <Button title="랜덤 게임" />
       </Link>
+
+      <Bubble text="추수감사절" width={250} height={120} isLeft={true} />
+      
+
       <DropdownButton data={sampleData} />
     </ScrollView>
   );

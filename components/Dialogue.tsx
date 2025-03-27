@@ -1,41 +1,13 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageSourcePropType,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
-interface BubbleProps {
-  text?: string;
-  imageSource?: ImageSourcePropType;
-  width?: number;
-  height?: number;
-  isLeft?: boolean;
-}
-
-const Bubble: React.FC<BubbleProps> = ({
-  text,
-  imageSource,
-  width = 200,
-  height = 100,
-  isLeft = true,
-}) => {
-  const bubbleStyle: StyleProp<ViewStyle> = {
-    width,
-    height,
-  };
-
+const Dialogue = ({ text, imageSource, width = 200, height = 100, isLeft = true }) => {
   return (
     <View style={[styles.wrapper, isLeft ? styles.leftAlign : styles.rightAlign]}>
-      <View style={[styles.bubbleContainer, bubbleStyle]}>
+      {/* 말풍선 본체 */}
+      <View style={[styles.bubbleContainer, { width, height }]}>  
         {text && <Text style={styles.bubbleText}>{text}</Text>}
         {imageSource && <Image source={imageSource} style={styles.bubbleImage} />}
-        {isLeft && <View style={[styles.bubbleTail, styles.leftTail]} />}
-        {!isLeft && <View style={[styles.bubbleTail, styles.rightTail]} />}
       </View>
     </View>
   );
@@ -106,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Bubble;
+export default Dialogue;
