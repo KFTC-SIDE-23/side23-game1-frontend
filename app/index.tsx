@@ -15,9 +15,16 @@ import {
 // import { ThemedText } from "@/components/ThemedText";
 // import { ThemedView } from "@/components/ThemedView";
 import ProfileCard from "@/components/ProfileCard";
+import Button from "@/components/Button";
+import DropdownButton from "@/components/DropdownButton";
 
 const GameStartScreen = () => {
   const [helpVisible, setHelpVisible] = useState(false);
+  const sampleData = [
+    { label: "친구와 함께", value: "1" },
+    { label: "방 만들기", value: "2" },
+    { label: "참여하기", value: "3" },
+  ];
 
   return (
     <>
@@ -59,7 +66,8 @@ const GameStartScreen = () => {
 
         {/* 하단 버튼 영역 */}
         <View style={styles.buttonContainer}>
-          <Text>버튼 영역(임시)</Text>
+          <Button title={"랜덤게임"} />
+          <DropdownButton data={sampleData} />
         </View>
       </View>
     </>
