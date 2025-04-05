@@ -106,15 +106,15 @@ const styles = StyleSheet.create({
   logo: {
     position: "absolute",
     width: height * 0.5,
-    height: width * 0.3,
+    height: width * 0.5,
     resizeMode: "contain",
-    top: height * 0.1,
+    top: height * 0.03,
   },
   buttonContainer: {
     flexDirection: "row",
     position: "absolute",
     bottom: height * 0.15,
-    gap: 10,
+    gap: 50,
   },
   modalBackground: {
     flex: 1,
@@ -132,35 +132,3 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
 });
-
-// export default function HomeScreen() {
-//   return (
-//     <ScrollView contentContainerStyle={styles.mainContainer}>
-//       <ProfileCard profileImage={null} profileText="Guest User" />
-//       <ThemedView style={styles.titleContainer}>
-//         <ThemedText type="title">Welcome! KFTCSide23</ThemedText>
-//         <HelloWave />
-//       </ThemedView>
-//       <ThemedView style={styles.stepContainer}>
-//         <ThemedText type="subtitle">Main Page</ThemedText>
-//       </ThemedView>
-//     </ScrollView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   mainContainer: {
-//     flexDirection: "column",
-//     alignItems: "center",
-//     gap: 8,
-//   },
-//   titleContainer: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     gap: 8,
-//   },
-//   stepContainer: {
-//     gap: 8,
-//     marginBottom: 8,
-//   },
-// });
