@@ -67,7 +67,7 @@ const GameStartScreen = () => {
         {/* 하단 버튼 영역 */}
         <View style={styles.buttonContainer}>
           <Button title={"랜덤게임"} />
-          <DropdownButton data={sampleData} />
+          <DropdownButton placeholder={"친구와 함께"} data={sampleData} />
         </View>
       </View>
     </>

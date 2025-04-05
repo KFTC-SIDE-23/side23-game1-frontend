@@ -7,42 +7,67 @@ interface DropdownItem {
   value: string;
 }
 
-const DropdownButton = ({ data }: { data: DropdownItem[] }) => {
+interface DropdownButtonProps {
+  data: DropdownItem[];
+  placeholder: string;
+}
+
+const DropdownButton = ({ data, placeholder }: DropdownButtonProps) => {
   const [value, setValue] = useState<string | null>(null);
 
   return (
-    <View style={styles.container}>
-      <Dropdown
-        style={styles.dropdown}
-        data={data}
-        labelField="label"
-        valueField="value"
-        placeholder="Select item"
-        value={value}
-        onChange={(item: DropdownItem) => {
-          if (item.value !== value) {
-            setValue(item.value);
-            console.log(item.value);
-          }
-        }}
-      />
+    <View style={styles.wrapper}>
+      <View style={styles.shadowWrapper}>
+        <Dropdown
+          style={styles.dropdown}
+          data={data}
+          labelField="label"
+          valueField="value"
+          placeholder={placeholder}
+          value={value}
+          onChange={(item: DropdownItem) => {
+            if (item.value !== value) {
+              setValue(item.value);
+              console.log(item.value);
+            }
+          }}
+        />
+        <View style={styles.shadowLayer} />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
+  wrapper: {
+    alignSelf: "flex-start",
+  },
+  shadowWrapper: {
+    position: "relative",
+  },
+  shadowLayer: {
+    position: "absolute",
+    backgroundColor: "#dfe3fa",
+    top: 5,
+    left: 0,
+    right: 0,
+    bottom: -5,
+    borderRadius: 999,
+    zIndex: 1,
   },
   dropdown: {
     width: 200,
     height: 40,
-    borderColor: "gray",
-    backgroundColor: "gray",
-    color: "white",
+    paddingVertical: 10,
+    borderColor: "white",
+    backgroundColor: "white",
+    color: "black",
     borderWidth: 1,
-    borderRadius: 15,
-    paddingHorizontal: 8,
+    borderRadius: 999,
+    paddingHorizontal: 20,
+    zIndex: 2,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
