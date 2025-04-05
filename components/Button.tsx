@@ -15,11 +15,19 @@ interface ButtonProps {
   onPress?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ title, buttonStyle, textStyle }) => {
+const Button: React.FC<ButtonProps> = ({
+  title,
+  buttonStyle,
+  textStyle,
+  onPress,
+}) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.shadowWrapper}>
-        <TouchableOpacity style={[styles.button, buttonStyle]}>
+        <TouchableOpacity
+          onPress={onPress}
+          style={[styles.button, buttonStyle]}
+        >
           <Text style={[styles.text, textStyle]}>{title}</Text>
         </TouchableOpacity>
         <View style={styles.shadowLayer} />
@@ -43,16 +51,17 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: -5,
     borderRadius: 999,
-    zIndex: 1,
+    zIndex: 2,
   },
   button: {
     backgroundColor: "#fff",
-    paddingVertical: 10,
-    paddingHorizontal: 60,
+    minWidth: 200,
+    height: 40,
+    paddingHorizontal: 50,
     borderRadius: 999,
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 2,
+    zIndex: 3,
   },
   text: {
     color: "#000",

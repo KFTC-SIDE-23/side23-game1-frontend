@@ -21,9 +21,8 @@ import DropdownButton from "@/components/DropdownButton";
 const GameStartScreen = () => {
   const [helpVisible, setHelpVisible] = useState(false);
   const sampleData = [
-    { label: "친구와 함께", value: "1" },
-    { label: "방 만들기", value: "2" },
-    { label: "참여하기", value: "3" },
+    { label: "방 만들기", route: "/create-room" as const },
+    { label: "참여하기", route: "/join-room" as const },
   ];
 
   return (
@@ -67,7 +66,7 @@ const GameStartScreen = () => {
         {/* 하단 버튼 영역 */}
         <View style={styles.buttonContainer}>
           <Button title={"랜덤게임"} />
-          <DropdownButton placeholder={"친구와 함께"} data={sampleData} />
+          <DropdownButton title={"친구와 함께"} data={sampleData} />
         </View>
       </View>
     </>
@@ -114,7 +113,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     position: "absolute",
-    bottom: height * 0.1,
+    bottom: height * 0.15,
+    gap: 10,
   },
   modalBackground: {
     flex: 1,
