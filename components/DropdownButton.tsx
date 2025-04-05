@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,11 +7,12 @@ import {
   ViewStyle,
   TextStyle,
   LayoutRectangle,
+  LayoutChangeEvent,
 } from "react-native";
 import Button from "./Button";
 import { useRouter } from "expo-router";
 
-type RoutePaths = "/create-room" | "/join-room";
+type RoutePaths = "/withFriend/create" | "/withFriend/join";
 
 interface DropdownItem {
   label: string; // 드롭다운 항목의 레이블
@@ -40,7 +41,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   const toggleMenu = (): void => {
     setIsOpen(!isOpen);
   };
-  const measureButton = (event: any) => {
+  const measureButton = (event: LayoutChangeEvent) => {
     const { x, y, width, height } = event.nativeEvent.layout;
     setButtonLayout({ x, y, width, height });
   };
@@ -49,7 +50,6 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
       item.onPress();
     } else if (item.route) {
       router.push(item.route as never);
-    } else {
     }
   };
 
@@ -77,7 +77,6 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
             {data.map((item, index) => (
               <React.Fragment key={index}>
                 <TouchableOpacity
-                  key={index}
                   style={styles.dropdownItem}
                   onPress={() => {
                     handleSelect(item);

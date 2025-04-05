@@ -21,8 +21,8 @@ import DropdownButton from "@/components/DropdownButton";
 const GameStartScreen = () => {
   const [helpVisible, setHelpVisible] = useState(false);
   const sampleData = [
-    { label: "방 만들기", route: "/create-room" as const },
-    { label: "참여하기", route: "/join-room" as const },
+    { label: "방 만들기", route: "/withFriend/create" as const },
+    { label: "참여하기", route: "/withFriend/join" as const },
   ];
 
   return (
