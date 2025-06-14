@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#fff",
-    minWidth: 200,
+    minWidth: 270,
     height: 40,
     paddingHorizontal: 50,
     borderRadius: 999,
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#000",
     fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
