@@ -1,7 +1,4 @@
-import {
-    DarkTheme,
-    ThemeProvider
-} from "@react-navigation/native";
+import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -35,6 +32,11 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="+not-found" />
+        <Stack.Screen name="create" />
+        <Stack.Screen name="join" />
+        <Stack.Screen name="waitingRoom" />
+        <Stack.Screen name="gameRoom" />
+        <Stack.Screen name="resultRoom" />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
