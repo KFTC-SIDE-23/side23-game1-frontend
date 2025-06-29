@@ -1,12 +1,12 @@
+import { useUser } from "@/context/UserContext";
 import React, { useState } from "react";
-
 import {
-    Dimensions,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
 
@@ -23,6 +23,8 @@ const GameStartScreen = () => {
     { label: "방 만들기", route: "/withFriend/create" as const },
     { label: "참여하기", route: "/withFriend/join" as const },
   ];
+  const { user } = useUser();
+  if (!user) return null;
 
   return (
     <>
@@ -40,7 +42,7 @@ const GameStartScreen = () => {
       <View style={styles.container}>
         {/* 프로필 카드 */}
         <View style={styles.profileContainer}>
-          <ProfileCard profileImage={null} profileText="Guest User" />
+          <ProfileCard profileImage={user.avatar} profileText={user.name} />
         </View>
 
         {/* 도움말 버튼 */}
