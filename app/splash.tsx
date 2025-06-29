@@ -27,15 +27,15 @@ const SplashScreen = () => {
         setUser({ uid, name: name, avatar: avatar });
 
         console.log(uid, name, avatar);
-        setTimeout(() => {
+        requestAnimationFrame(() => {
           router.replace("/");
-        }, 0);
+        });
       } catch (err) {
         console.log("초기화 실패 : ", err);
       }
     };
 
-    requestAnimationFrame(init);
+    init();
   }, []);
   return (
     <>
