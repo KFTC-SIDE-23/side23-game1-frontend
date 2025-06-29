@@ -1,13 +1,14 @@
 import { useUser } from "@/context/UserContext";
 import { useRouter } from "expo-router";
 import React, { useEffect } from "react";
-import { Text } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 const SplashScreen = () => {
   const router = useRouter();
   const { setUser } = useUser();
 
   useEffect(() => {
+    console.log("Splash mounted");
     const init = async () => {
       try {
         const uidRes = await fetch(
@@ -26,7 +27,9 @@ const SplashScreen = () => {
         setUser({ uid, name: name, avatar: avatar });
 
         console.log(uid, name, avatar);
-        router.replace("/");
+        requestAnimationFrame(() => {
+          router.replace("/");
+        });
       } catch (err) {
         console.log("초기화 실패 : ", err);
       }
@@ -36,9 +39,28 @@ const SplashScreen = () => {
   }, []);
   return (
     <>
-      <Text style={{ color: "white" }}>SplashScreen</Text>
+      <View style={styles.container}>
+        <Image
+          source={require("../assets/images/splash-logo.png")}
+          style={styles.logo}
+        />
+      </View>
     </>
   );
 };
 
 export default SplashScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#1F225F",
+  },
+  logo: {
+    height: 100,
+    width: 100,
+    resizeMode: "contain",
+  },
+});
