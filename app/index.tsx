@@ -1,5 +1,5 @@
 import { useUser } from "@/context/UserContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -16,6 +16,7 @@ import {
 import Button from "@/components/Button";
 import DropdownButton from "@/components/DropdownButton";
 import ProfileCard from "@/components/ProfileCard";
+import { useRouter } from "expo-router";
 
 const GameStartScreen = () => {
   const [helpVisible, setHelpVisible] = useState(false);
@@ -24,6 +25,14 @@ const GameStartScreen = () => {
     { label: "참여하기", route: "/withFriend/join" as const },
   ];
   const { user } = useUser();
+  const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      requestAnimationFrame(() => {
+        router.replace("/splash");
+      });
+    }
+  }, []);
   if (!user) return null;
 
   return (

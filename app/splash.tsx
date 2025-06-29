@@ -8,6 +8,7 @@ const SplashScreen = () => {
   const { setUser } = useUser();
 
   useEffect(() => {
+    console.log("Splash mounted");
     const init = async () => {
       try {
         const uidRes = await fetch(
@@ -26,13 +27,15 @@ const SplashScreen = () => {
         setUser({ uid, name: name, avatar: avatar });
 
         console.log(uid, name, avatar);
-        router.replace("/");
+        setTimeout(() => {
+          router.replace("/");
+        }, 0);
       } catch (err) {
         console.log("초기화 실패 : ", err);
       }
     };
 
-    init();
+    requestAnimationFrame(init);
   }, []);
   return (
     <>

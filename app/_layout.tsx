@@ -1,6 +1,6 @@
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -19,12 +19,9 @@ export default function RootLayout() {
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
-  const router = useRouter();
-
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
-      router.replace("/splash");
     }
   }, [loaded]);
 
@@ -35,11 +32,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DarkTheme}>
       <UserProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="splash" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
+        <Stack screenOptions={{ headerShown: false }}></Stack>
         <StatusBar style="auto" />
       </UserProvider>
     </ThemeProvider>
