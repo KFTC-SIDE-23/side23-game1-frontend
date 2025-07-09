@@ -31,10 +31,16 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={DarkTheme}>
-      <UserProvider>
-        <Stack screenOptions={{ headerShown: false }}></Stack>
-        <StatusBar style="auto" />
-      </UserProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="+not-found" />
+        <Stack.Screen name="create" />
+        <Stack.Screen name="join" />
+        <Stack.Screen name="waitingRoom" />
+        <Stack.Screen name="gameRoom" />
+        <Stack.Screen name="resultRoom" />
+      </Stack>
+      <StatusBar style="auto" />
     </ThemeProvider>
   );
 }
