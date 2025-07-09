@@ -1,29 +1,40 @@
 import React, { useRef } from 'react';
-import { View, Text, StyleSheet, Image, ImageSourcePropType } from 'react-native';
+import {
+  DimensionValue,
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Signature from 'react-native-signature-canvas';
 
 interface DrawingPannelProps {
   text?: string;
   imageSource?: ImageSourcePropType;
-  width?: number;
-  height?: number;
+  width?: DimensionValue;
+  height?: DimensionValue;
   isLeft?: boolean;
-  enableDrawing?: boolean;
+  enableDrawing?: true;
 }
 
 const DrawingPannel: React.FC<DrawingPannelProps> = ({
   text,
   imageSource,
-  width = 250,
-  height = 200,
+  width = '45%',
+  height = '600%',
   isLeft = true,
   enableDrawing = false,
 }) => {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
 
   const handleOK = (signature: string) => {
     console.log('🖌️ 그림 base64:', signature);
-    // 원하면 여기서 저장하거나 state로 넘길 수 있음
+  };
+
+  const handleClear = () => {
+    ref.current?.clearSignature();
   };
 
   return (
@@ -32,18 +43,31 @@ const DrawingPannel: React.FC<DrawingPannelProps> = ({
         {text && <Text style={styles.bubbleText}>{text}</Text>}
         {imageSource && <Image source={imageSource} style={styles.bubbleImage} />}
         {enableDrawing && (
-          <View style={[styles.signatureContainer, { width: width - 20, height: height - 60 }]}>
-            <Signature
-              ref={ref}
-              onOK={handleOK}
-              autoClear={false}
-              descriptionText="여기에 그림을 그리세요"
-              clearText="지우기"
-              confirmText="확인"
-              imageType="image/png"
-              webStyle={signatureWebStyle}
-            />
-          </View>
+          <>
+            <View style={styles.signatureContainer}>
+              <Signature
+                ref={ref}
+                onOK={handleOK}
+                autoClear={false}
+                imageType="image/png"
+                descriptionText=""
+                clearText="지우기"
+                confirmText="확인"
+                penColor="#000000"
+                webStyle={signatureWebStyle}
+                style={{ width: '100%', height: '100%' }}
+              />
+            </View>
+
+            <View style={styles.buttonRow}>
+              <TouchableOpacity
+                onPress={handleClear}
+                style={[styles.button, { backgroundColor: '#555' }]}
+              >
+                <Text style={styles.buttonText}>전체 지우기</Text>
+              </TouchableOpacity>
+            </View>
+          </>
         )}
       </View>
     </View>
@@ -55,22 +79,29 @@ const signatureWebStyle = `
     box-shadow: none;
     border: none;
     height: 100%;
+    background-color: white;
   }
   .m-signature-pad--body {
     border: none;
     height: 100%;
+    background-color: white;
   }
   canvas {
     height: 100% !important;
     width: 100% !important;
+    background-color: white !important;
+    touch-action: none;
   }
   .m-signature-pad--footer {
     display: none;
   }
   html, body {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     height: 100%;
     width: 100%;
+    background-color: white;
+    overflow: hidden;
   }
 `;
 
@@ -90,8 +121,8 @@ const styles = StyleSheet.create({
   bubbleContainer: {
     backgroundColor: 'white',
     padding: 10,
-    borderRadius: 15,
-    maxWidth: 300,
+    borderRadius: 30,
+    maxWidth: '100%',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 5,
@@ -113,7 +144,21 @@ const styles = StyleSheet.create({
   },
   signatureContainer: {
     backgroundColor: 'transparent',
-    overflow: 'hidden',
+    flex: 1,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 8,
+  },
+  button: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 

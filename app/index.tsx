@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-
+import { useUser } from "@/context/UserContext";
+import React, { useEffect, useState } from "react";
 import {
-    Dimensions,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
 
@@ -16,6 +16,7 @@ import {
 import Button from "@/components/Button";
 import DropdownButton from "@/components/DropdownButton";
 import ProfileCard from "@/components/ProfileCard";
+import { useRouter } from "expo-router";
 
 const GameStartScreen = () => {
   const [helpVisible, setHelpVisible] = useState(false);
@@ -23,6 +24,16 @@ const GameStartScreen = () => {
     { label: "방 만들기", route: "/withFriend/create" as const },
     { label: "참여하기", route: "/withFriend/join" as const },
   ];
+  const { user } = useUser();
+  const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      requestAnimationFrame(() => {
+        router.replace("/splash");
+      });
+    }
+  }, []);
+  if (!user) return null;
 
   return (
     <>
@@ -40,7 +51,7 @@ const GameStartScreen = () => {
       <View style={styles.container}>
         {/* 프로필 카드 */}
         <View style={styles.profileContainer}>
-          <ProfileCard profileImage={null} profileText="Guest User" />
+          <ProfileCard profileImage={user.avatar} profileText={user.name} />
         </View>
 
         {/* 도움말 버튼 */}
