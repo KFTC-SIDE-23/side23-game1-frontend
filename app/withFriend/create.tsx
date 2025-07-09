@@ -3,10 +3,14 @@ import ProfileCard from "@/components/ProfileCard";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 
@@ -22,6 +26,11 @@ export default function CreateRoomScreen() {
   };
 
   return (
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={{ flex: 1 }}
+  >
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <View style={styles.container}>
       {/* 프로필 카드 */}
       <View style={styles.profileContainer}>
@@ -34,9 +43,11 @@ export default function CreateRoomScreen() {
 
         <TextInput
           style={styles.input}
-          placeholder="방 번호"
+          placeholder="방 번호는 자동 생성됩니다."
+          placeholderTextColor={"#999"}
           value={roomId}
           onChangeText={setRoomId}
+          editable={false} // 방 번호는 자동 생성되므로 사용자가 입력할 필요 없음
         />
 
         <TextInput
@@ -44,7 +55,7 @@ export default function CreateRoomScreen() {
           placeholder="비밀번호"
           value={password}
           onChangeText={setPassword}
-          secureTextEntry
+          keyboardType="number-pad"
         />
 
         <TouchableOpacity style={styles.createButton} onPress={handleCreate}>
@@ -52,6 +63,8 @@ export default function CreateRoomScreen() {
         </TouchableOpacity>
       </View>
     </View>
+    </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 

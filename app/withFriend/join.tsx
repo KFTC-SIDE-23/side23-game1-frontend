@@ -3,10 +3,14 @@ import ProfileCard from "@/components/ProfileCard";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 
@@ -22,36 +26,45 @@ export default function JoinRoomScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* 프로필 카드 */}
-      <View style={styles.profileContainer}>
-        <ProfileCard profileImage={null} profileText="Guest User" />
-      </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          {/* 프로필 카드 */}
+          <View style={styles.profileContainer}>
+            <ProfileCard profileImage={null} profileText="Guest User" />
+          </View>
 
-      {/* 중앙 영역 */}
-      <View style={styles.modalBox}>
-        <Text style={styles.modalTitle}>참여하기</Text>
+          {/* 중앙 영역 */}
+          <View style={styles.modalBox}>
+            <Text style={styles.modalTitle}>참여하기</Text>
 
-        <TextInput
-          style={styles.input}
-          placeholder="방 번호"
-          value={roomId}
-          onChangeText={setRoomId}
-        />
+            <TextInput
+              style={styles.input}
+              placeholder="방 번호"
+              value={roomId}
+              onChangeText={setRoomId}
+              keyboardType="number-pad"
+            />
 
-        <TextInput
-          style={styles.input}
-          placeholder="비밀번호"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
+            <TextInput
+              style={styles.input}
+              placeholder="비밀번호"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+              keyboardType="number-pad"
+            />
 
-        <TouchableOpacity style={styles.createButton} onPress={handleJoin}>
-          <Text style={styles.createButtonText}>만들기</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+            <TouchableOpacity style={styles.createButton} onPress={handleJoin}>
+              <Text style={styles.createButtonText}>만들기</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
